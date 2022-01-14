@@ -13,7 +13,7 @@ import java.io.InputStream;
 public class XmlTest {
 
     public static void main(String[] args) throws IOException {
-        String resource = "mybatis-config.xml";
+        String resource = "m-config.xml";
         InputStream stream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(stream);
         SqlSession session = sessionFactory.openSession();
