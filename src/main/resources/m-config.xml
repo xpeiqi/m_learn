@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC
-    "-//mybatis.org//DTD Config 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+        "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <properties resource="jdbc.properties"/>
     <typeAliases>
         <package name="org.x.c2.po"/>
+        <package name="org.x.c3.po"/>
     </typeAliases>
 
     <typeHandlers>
+        <!--默认使用 EnumTypeHandler, 即使用 enum value 映射。这里改成使用 ordinal-->
+        <!--自定义 handler 建议在此处写 jdbcType javaType, 因为指定系统 handler 时只能写在这里，所以就统一写在此处。-->
+        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="org.x.c3.enums.Sex"/>
         <package name="org.x.c3.typeHandler"/>
     </typeHandlers>
 
@@ -26,6 +30,7 @@
         </environment>
     </environments>
     <mappers>
-         <mapper resource="mappers/roleMapper.xml"/>
+        <mapper resource="mappers/roleMapper.xml"/>
+        <mapper resource="mappers/UserMapper.xml"/>
     </mappers>
 </configuration>
